@@ -1,0 +1,51 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Easy Node Swagger",
+        "description": "Simple Example of NODEJS REST API"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/": {
+            "get": {
+                "tags": ["Testing"],
+                "description": "Test if Api is working",
+                "responses": {
+                    "200": {
+                        "description": "Success Text",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/presenters": {
+            "get": {
+                "description": "Get all presenters",
+                "tags": ["Presenters"],
+                "responses": {
+                    "200": {
+                        "description": "An array of presenters",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
