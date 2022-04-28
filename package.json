@@ -1,0 +1,23 @@
+{
+    "name": "learning-swagger",
+    "author": "Jeordin Callister",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start-simple": "cd ./simple-node-app && npm i && npm run start",
+        "start-crud": "cd ./crud-node-app && npm i && npm run start",
+        "start-all": "concurrently \"npm:start-simple\" \"npm:start-crud\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Jeordman/younque-learn-swagger.git"
+    },
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Jeordman/younque-learn-swagger/issues"
+    },
+    "homepage": "https://github.com/Jeordman/younque-learn-swagger#readme",
+    "devDependencies": {
+        "concurrently": "^7.1.0"
+    }
+}

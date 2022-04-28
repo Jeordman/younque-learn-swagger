@@ -7,13 +7,16 @@ const swaggerDocument = require("./swagger.json");
 
 const PORT = process.env.PORT || 8080;
 
-app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// can you make a protected route? with this
+// aws cognito
+// upload test the swagger docs and then push to s3
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get("/api/", (_, res) => {
+app.get("/", (_, res) => {
     res.send("Hello World!");
 });
 
-app.get("/api/presenters", (_, res) => {
+app.get("/presenters", (_, res) => {
     res.status(200).json(presenters);
 });
 
