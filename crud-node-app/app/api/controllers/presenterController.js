@@ -40,5 +40,14 @@ module.exports = {
             return res.status(404).json({status: '0', type: 'Failed', message: 'Could not find presenter'});
         presenterToEdit.name = name;
         res.status(200).json(presenterToEdit);
+    },
+    deletePresenter: (req, res) => {
+        const { id } = req.params;
+        const presenterToDelete = presenters.filter((p) => p.id === +id)[0];
+        if (!presenterToDelete)
+            return res.status(404).json({status: '0', type: 'Failed', message: 'Could not find presenter'});
+        const index = presenters.indexOf(presenterToDelete);
+        presenters.splice(index, 1);
+        res.status(200).json(presenterToDelete);
     }
 };

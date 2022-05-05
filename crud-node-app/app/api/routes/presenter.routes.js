@@ -5,6 +5,7 @@ const {
     postPresenter,
     getPresenter,
     editPresenter,
+    deletePresenter,
 } = require("../controllers/presenterController");
 
 const router = express.Router();
@@ -19,5 +20,7 @@ router.post("/presenters", postPresenter);
 router.get("/presenters/:id", getPresenter);
 
 router.put("/presenters/:id", editPresenter);
+
+router.delete("/presenters/:id", deletePresenter);
 
 module.exports = router;

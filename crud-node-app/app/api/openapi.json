@@ -88,13 +88,7 @@
                 "description": "Get Presenter at specified id",
                 "parameters": [
                     {
-                        "name": "presenterId",
-                        "in": "path",
-                        "description": "id of presenter to fetch",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "$ref": "#/definitions/PresenterIdParam"
                     }
                 ],
                 "responses": {
@@ -109,14 +103,7 @@
                         }
                     },
                     "404": {
-                        "description": "Presenter not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/definitions/Error"
-                                }
-                            }
-                        }
+                        "$ref": "#/definitions/404PresenterError"
                     }
                 }
             },
@@ -126,13 +113,7 @@
                 "tags": ["Presenters"],
                 "parameters": [
                     {
-                        "name": "presenterId",
-                        "in": "path",
-                        "description": "Id of presenter to change",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "$ref": "#/definitions/PresenterIdParam"
                     }
                 ],
                 "requestBody": {
@@ -157,14 +138,7 @@
                         }
                     },
                     "404": {
-                        "description": "Presenter not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/definitions/Error"
-                                }
-                            }
-                        }
+                        "$ref": "#/definitions/404PresenterError"
                     },
                     "400": {
                         "description": "Invalid request",
@@ -181,8 +155,25 @@
             "delete": {
                 "description": "Get all presenters",
                 "tags": ["Presenters"],
+                "parameters": [
+                    {
+                        "$ref": "#/definitions/PresenterIdParam"
+                    }
+                ],
                 "responses": {
-                    "200": {}
+                    "200": {
+                        "description": "Presenter deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Presenter"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/definitions/404PresenterError"
+                    }
                 }
             }
         }
@@ -196,6 +187,16 @@
                 }
             }
         },
+        "PresenterIdParam": {
+            "name": "presenterId",
+            "in": "path",
+            "description": "id of presenter interact with",
+            "required": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+
         "Presenter": {
             "type": "object",
             "properties": {
@@ -212,6 +213,16 @@
             "properties": {
                 "name": {
                     "type": "string"
+                }
+            }
+        },
+        "404PresenterError": {
+            "description": "Presenter not found",
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "#/definitions/Error"
+                    }
                 }
             }
         },
