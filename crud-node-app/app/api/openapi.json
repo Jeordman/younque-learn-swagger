@@ -57,6 +57,70 @@
                         }
                     }
                 }
+            },
+            "post": {}
+        },
+        "/presenters/{presenterId}": {
+            "get": {
+                "tags": ["Presenters"],
+                "description": "Get Presenter at specified id",
+                "parameters": [
+                    {
+                        "name": "presenterId",
+                        "in": "path",
+                        "description": "username to fetch",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Presenter at specified id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Presenter not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
             }
         }
     }
