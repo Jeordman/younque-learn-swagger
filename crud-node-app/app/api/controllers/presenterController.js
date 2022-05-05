@@ -5,18 +5,19 @@ module.exports = {
     testApi: (_, res) => {
         res.status(200).json({message: "API is working"});
     },
+
     getAllPresenters: (_, res) => {
         res.status(200).json(presenters);
     },
+
     getPresenter: (req, res) => {
         const { id } = req.params;
-        console.log('id', id);
         const presenterToReturn = presenters.filter((p) => p.id === +id)[0];
-        console.log('toreturn', presenterToReturn);
         if (!presenterToReturn)
             return res.status(404).json({status: '0', type: 'Failed', message: 'Could not find presenter'});
         res.status(200).json(presenterToReturn);
     },
+
     postPresenter: (req, res) => {
         const { id, name } = req.body;
         if (id.toString().length === 0 || !name) {
@@ -29,6 +30,7 @@ module.exports = {
         presenters.push(newPresenter);
         res.status(201).json(newPresenter);
     },
+
     editPresenter: (req, res) => {
         const { id } = req.params;
         const { name } = req.body;
@@ -41,6 +43,7 @@ module.exports = {
         presenterToEdit.name = name;
         res.status(200).json(presenterToEdit);
     },
+
     deletePresenter: (req, res) => {
         const { id } = req.params;
         const presenterToDelete = presenters.filter((p) => p.id === +id)[0];

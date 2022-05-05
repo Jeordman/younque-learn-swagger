@@ -2,15 +2,19 @@
     "openapi": "3.0.0",
     "info": {
         "version": "1.0.0",
-        "title": "Easy Node Swagger",
-        "description": "Full crud of NODEJS REST API"
+        "title": "Learning OPENAPI @ YOUNIQUE",
+        "description": "Full Crud API for Learning OPENAPI @ YOUNIQUE",
+        "author": {
+            "name": "Jeordin Callister",
+            "email": "jcallister@youniqueproducts.com"
+        }
     },
     "host": "localhost:8080",
     "basePath": "/",
     "paths": {
         "/": {
             "get": {
-                "tags": ["Testing"],
+                "tags": ["Bash Path Test"],
                 "responses": {
                     "200": {
                         "description": "Successful Response",
