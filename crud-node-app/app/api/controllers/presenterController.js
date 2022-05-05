@@ -29,4 +29,16 @@ module.exports = {
         presenters.push(newPresenter);
         res.status(201).json(newPresenter);
     },
+    editPresenter: (req, res) => {
+        const { id } = req.params;
+        const { name } = req.body;
+        if (id.toString().length === 0 || !name) {
+            return res.status(400).json({status: '0', type: 'Failed', message: 'Please provide an id and name'});
+        }
+        const presenterToEdit = presenters.filter((p) => p.id === +id)[0];
+        if (!presenterToEdit)
+            return res.status(404).json({status: '0', type: 'Failed', message: 'Could not find presenter'});
+        presenterToEdit.name = name;
+        res.status(200).json(presenterToEdit);
+    }
 };

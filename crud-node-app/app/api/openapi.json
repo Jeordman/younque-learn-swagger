@@ -90,7 +90,7 @@
                     {
                         "name": "presenterId",
                         "in": "path",
-                        "description": "username to fetch",
+                        "description": "id of presenter to fetch",
                         "required": true,
                         "schema": {
                             "type": "string"
@@ -122,10 +122,60 @@
             },
 
             "put": {
-                "description": "Get all presenters",
+                "description": "Change presenter at specified id",
                 "tags": ["Presenters"],
+                "parameters": [
+                    {
+                        "name": "presenterId",
+                        "in": "path",
+                        "description": "Id of presenter to change",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/PresenterName"
+                            }
+                        }
+                    }
+                },
                 "responses": {
-                    "200": {}
+                    "200": {
+                        "description": "Presenter at specified id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Presenter"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Presenter not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Error"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Error"
+                                }
+                            }
+                        }
+                    }
                 }
             },
             "delete": {
@@ -152,6 +202,14 @@
                 "id": {
                     "type": "integer"
                 },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "PresenterName": {
+            "type": "object",
+            "properties": {
                 "name": {
                     "type": "string"
                 }
