@@ -17,12 +17,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "$ref": "#/definitions/ApiTest"
                                 }
                             }
                         }
@@ -42,15 +37,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "integer"
-                                            },
-                                            "name": {
-                                                "type": "string"
-                                            }
-                                        }
+                                        "$ref": "#/definitions/Presenter"
                                     }
                                 }
                             }
@@ -58,7 +45,42 @@
                     }
                 }
             },
-            "post": {}
+            "post": {
+                "description": "Add presenter",
+                "tags": ["Presenters"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Presenter"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Presenter added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Presenter"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
         "/presenters/{presenterId}": {
             "get": {
@@ -81,15 +103,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "integer"
-                                        },
-                                        "name": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "$ref": "#/definitions/Presenter"
                                 }
                             }
                         }
@@ -105,10 +119,44 @@
                         }
                     }
                 }
+            },
+
+            "put": {
+                "description": "Get all presenters",
+                "tags": ["Presenters"],
+                "responses": {
+                    "200": {}
+                }
+            },
+            "delete": {
+                "description": "Get all presenters",
+                "tags": ["Presenters"],
+                "responses": {
+                    "200": {}
+                }
             }
         }
     },
     "definitions": {
+        "ApiTest": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "Presenter": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "Error": {
             "type": "object",
             "properties": {
