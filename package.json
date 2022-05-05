@@ -4,9 +4,12 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "start-simple": "cd ./simple-node-app && npm i && npm run start",
-        "start-crud": "cd ./crud-node-app && npm i && npm run start",
-        "start-all": "concurrently \"npm:start-simple\" \"npm:start-crud\""
+        "start-simple": "cd ./simple-node-app && npm run start",
+        "install-simple": "cd ./simple-node-app && npm install",
+        "start-crud": "cd ./crud-node-app && npm run start",
+        "install-crud": "cd ./crud-node-app && npm install",
+        "start-all": "concurrently \"npm:start-simple\" \"npm:start-crud\"",
+        "install-all": "concurrently \"npm:install-simple\" \"npm:install-crud\""
     },
     "repository": {
         "type": "git",
